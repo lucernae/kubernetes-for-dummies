@@ -1,0 +1,20 @@
+nodes:
+  - address: 192.168.1.12
+    internal_address: 192.168.1.12
+    user: lucernae
+    role: [controlplane, worker, etcd]
+
+ssh_agent_auth: true
+
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 24h
+
+# Required for external TLS termination with
+# ingress-nginx v0.22+
+ingress:
+  provider: nginx
+  options:
+    use-forwarded-headers: "true"
